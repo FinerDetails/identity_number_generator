@@ -144,10 +144,8 @@ window.onload = () => {
 		return number
 	}
 
-	//returns an individual number based on gender. For females, an even number and for males an uneven number.
+	//randomizes an individual number based on gender in the format: nnn. For females, an even number and for males an uneven number.
 	//numbers 000, 001 and 900–999 are forbidden.
-
-	//randomizes a new individual number in the format: nnn
 	function generateNNN() {
 		const isFemale = document.querySelector(
 			'input[name="isFemale"]:checked'
