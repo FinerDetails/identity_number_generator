@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="generator.js"></script>
+		<title>GrandIdentity</title>
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+
+	<body>
+		<div class="grid-container">
+			<div class="grid-item item1"></div>
+			<div class="grid-item item2">
+				<div id="headerBackground">
+					<!-- prettier-ignore -->
+					<pre id="headerText">Grand
+    Identity</pre>
+				</div>
+			</div>
+			<div class="grid-item item3">
+				<nav>
+					<h2>Generator</h2>
+					<a href="/checker.html">Checker</a>
+				</nav>
+			</div>
+			<div class="grid-item item4">
+				<div id="generatorContainer">
+					<form id="generatorForm">
+						<label for="minDate">Minimum Date</label>
+						<input type="date" id="minDate" value="1891-04-01" required />
+						<br />
+						<label for="maxDate">Maximum Date</label>
+						<input type="date" id="maxDate" value="2022-12-11" required />
+						<br />
+						<label for="isFemale">Gender</label>
+						<input
+							type="radio"
+							value="true"
+							name="isFemale"
+							id="female"
+							checked
+							class="inputTab"
+						/><label for="female">Female</label>
+						<!-- returns "true" -->
+						<input
+							type="radio"
+							value=""
+							name="isFemale"
+							id="male"
+							class="inputTab"
+						/>
+						<label for="male">Male</label>
+						<!-- returns "" which is falsly -->
+						<br />
+						<label for="expat">Expat</label>
+						<input
+							type="checkbox"
+							value="true"
+							id="isExpat"
+							id="expat"
+							class="inputTab"
+						/>
+						<br />
+						<input type="submit" value="Generate" />
+					</form>
+					<p id="output"></p>
+				</div>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const background = new Image()
+				background.src = "people_walking_background.png"
+				background.onload = () => {
+					const body = document.getElementsByTagName("body")[0]
+					body.style.backgroundImage = `url(${background.src})`
+				}
+			})
+		</script>
+	</body>
+</html>
