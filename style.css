@@ -15,7 +15,8 @@ body {
 	background-size:cover;
 	margin: 0;
 	height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 .grid-container {
 	display: grid;
@@ -81,7 +82,7 @@ h2, a{
 
 p,
 label{
-	font-size:x-large;
+	font-size: clamp(1rem, min(5vh,5vw), 2rem);
 	font-family: bitter;
 	color:#dfd7d7;
 }
@@ -92,6 +93,27 @@ input {
 	margin: 1rem;
 	height: 30px;
 	width:auto;
+	accent-color: #100404
+}
+#output {
+	font-family: bitter;
+	color:#dfd7d7;
+	font-size:x-large;
+	list-style-type: none;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+button{
+	border: none;
+	margin: 0;
+	margin-top: 1rem;
+	font-size: clamp(1rem, min(5vh,5vw), 2rem);
+	padding: 0.5rem;
+	background-color: #6B2221;
+	color:#dfd7d7;
+	
 }
 .inputTab{
 	width: 18px;
@@ -109,6 +131,7 @@ input {
 		justify-content: center;
 	}
 	#generatorContainer, #checkerContainer{
-		margin-left:0;
+		margin: 1rem;
+		font-size: clamp(1rem, min(5vh,5vw), 2rem);
 	}
 }
