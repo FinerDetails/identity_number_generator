@@ -69,9 +69,10 @@
 			</div>
 		</div>
 		<script>
+			//lazy loading a larger image
 			document.addEventListener("DOMContentLoaded", () => {
 				const background = new Image()
-				background.src = "people_walking_background.png"
+				background.src = "/images/people_walking_background.png"
 				background.onload = () => {
 					const body = document.getElementsByTagName("body")[0]
 					body.style.backgroundImage = `url(${background.src})`

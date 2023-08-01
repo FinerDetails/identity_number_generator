@@ -10,7 +10,7 @@ html{
 	height: 100%;
 }
 body {
-	background-image: url(/people_walking_background_small.png);
+	background-image: url(/images/people_walking_background_small.png);
 	background-repeat: no-repeat;
 	background-size:cover;
 	margin: 0;
@@ -132,6 +132,6 @@ button{
 	}
 	#generatorContainer, #checkerContainer{
 		margin: 1rem;
-		font-size: clamp(1rem, min(5vh,5vw), 2rem);
+		font-size: clamp(1rem, min(5vh,5vw), 2rem);images/
 	}
 }
