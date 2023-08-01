@@ -235,8 +235,8 @@ window.onload = () => {
 		return identityNumber
 	}
 
-	//attatches the JavaScript to the HTML
-	returnDefaultDateValue = () => {
+	//provides a the current day for maxDate input field as default
+	const returnDefaultDateValue = () => {
 		const date = new Date()
 		let day = setLength(date.getDate().toString(), 2)
 		let month = setLength((date.getMonth() + 1).toString(), 2)
