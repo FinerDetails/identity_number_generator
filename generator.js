@@ -144,18 +144,14 @@ window.onload = () => {
 		return number
 	}
 
-	const isLeapYear = yy => {
-		if (
-			(yy % 4 === 0 && yy % 100 !== 0) ||
-			(yy % 100 === 0 && yy % 400 === 0)
-		) {
-			return true
-		}
-		return false
-	}
 	//returns an individual number based on gender. For females, an even number and for males an uneven number.
 	//numbers 000, 001 and 900–999 are forbidden.
-	const returnIndividualNumber = isFemale => {
+
+	//randomizes a new individual number in the format: nnn
+	function generateNNN() {
+		const isFemale = document.querySelector(
+			'input[name="isFemale"]:checked'
+		).value
 		let individualNumber = setLength(randomIntInRangeOf(2, 899), 3)
 		if (isFemale) {
 			while (individualNumber % 2 === 1) {
@@ -166,7 +162,13 @@ window.onload = () => {
 				individualNumber = setLength(randomIntInRangeOf(2, 899), 3)
 			}
 		}
-		return individualNumber.toString()
+		return setLength(individualNumber.toString())
+	}
+	const returnNNN = individualNumber => {
+		if (!individualNumber) {
+			return generateNNN()
+		}
+		return setLength(individualNumber, 3)
 	}
 
 	//event listener for the generate button
@@ -174,16 +176,16 @@ window.onload = () => {
 		event.preventDefault()
 		const maxDate = document.getElementById("maxDate").value
 		const minDate = document.getElementById("minDate").value
-		const isFemale = document.querySelector(
-			'input[name="isFemale"]:checked'
-		).value
+
 		const isExpat = document.getElementById("isExpat").checked
+		const individualNumber = document.getElementById("individualNumber").value
+
 		const dateData = convertDate(minDate, maxDate)
 
 		document.getElementById("output").innerHTML = generateIdentityNumber(
 			dateData,
 			isExpat,
-			isFemale
+			returnNNN(individualNumber)
 		)
 	}
 	//converts date from the html date input to integers
@@ -210,7 +212,7 @@ window.onload = () => {
 	}
 
 	//puts together the identity number
-	const generateIdentityNumber = (dateData, isExpat, isFemale) => {
+	const generateIdentityNumber = (dateData, isExpat, nnn) => {
 		const year = randomStringInRangeOf(dateData.minYearInt, dateData.maxYearInt)
 		const yy = setLength((year % 100).toString(), 2)
 		// indicates years in date of birth
@@ -228,7 +230,6 @@ window.onload = () => {
 			dateData.maxYearString,
 			isExpat
 		) //indicates the century of birth
-		let nnn = setLength(returnIndividualNumber(isFemale), 3) //individual number
 		let t = returnCheckMark(parseInt(dd + mm + yy + nnn) % 31) //checkmark
 		const identityNumber = dd + mm + yy + separator + nnn + t
 		return identityNumber
