@@ -153,7 +153,8 @@ window.onload = () => {
 		}
 		return false
 	}
-	//returns an individual number based on gender. For females, an even number and for males an uneven number
+	//returns an individual number based on gender. For females, an even number and for males an uneven number.
+	//numbers 000, 001 and 900–999 are forbidden.
 	const returnIndividualNumber = isFemale => {
 		let individualNumber = setLength(randomIntInRangeOf(2, 899), 3)
 		if (isFemale) {
@@ -222,8 +223,6 @@ window.onload = () => {
 			2
 		)
 		//indicates days in date of birth
-		console.log(dateData.minDay)
-		console.log(dd)
 		const separator = returnSeparator(
 			dateData.minYearString,
 			dateData.maxYearString,

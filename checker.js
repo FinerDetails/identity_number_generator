@@ -45,6 +45,14 @@ window.onload = () => {
 	*/
 		return isFormatValid && isDayValid
 	}
+	//checks that the individual number is within permitted range
+	const isIndividualNumberValid = nnn => {
+		const number = Number(nnn)
+		if (2 < number && number < 900) {
+			return true
+		}
+		return false
+	}
 	const returnSex = nnn => {
 		if (nnn % 2 === 0) {
 			return "female"
@@ -62,7 +70,8 @@ window.onload = () => {
 
 		if (
 			isIdentityNumberFormatValid(identityNumber) &&
-			isDateValid(dateObj, mm)
+			isDateValid(dateObj, mm) &&
+			isIndividualNumberValid(nnn)
 		) {
 			const birthday = `${dateObj.getDate()}.${
 				dateObj.getMonth() + 1
@@ -75,12 +84,13 @@ window.onload = () => {
 				<li>Age: ${age}</li>
 				<li>Expat: ${isExpat}</li>
 				<li>Sex: ${returnSex(nnn)}</li>
+				<li>Individual number: ${nnn}</li>
 			</ul>
 		</div>`
 		} else {
 			document.getElementById("identityNumber").value = ""
 			output.innerHTML = `<div>
-			<p>identity number is invalid</p>
+			<p>identity number ${identityNumber} is invalid</p>
 		</div>`
 		}
 	}
