@@ -1,14 +1,14 @@
 @font-face {
 	font-family: bitter;
-	src: url(./fonts/Bitter/Bitter-VariableFont_wght.ttf);
+	src: url(.fonts/Bitter/Bitter-VariableFont_wght.ttf);
 }
 @font-face {
 	font-family: yeseva_one;
-	src: url(/fonts/Yeseva_One/YesevaOne-Regular.ttf);
+	src: url(fonts/Yeseva_One/YesevaOne-Regular.ttf);
 }
 
 body {
-	background-image: url(/images/people_walking_background_small.png);
+	background-image: url(images/people_walking_background_small.png);
 	background-repeat: no-repeat;
 	background-size:cover;
 	margin: 0;

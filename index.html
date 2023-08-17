@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="generator.js"></script>
 		<title>GrandIdentity</title>
-		<link rel="stylesheet" href="/style.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 
 	<body>
@@ -21,7 +21,7 @@
 			<div class="grid-item item3">
 				<nav>
 					<h2>Generator</h2>
-					<a href="/checker.html">Checker</a>
+					<a href="checker.html">Checker</a>
 				</nav>
 			</div>
 			<div class="grid-item item4">
@@ -82,7 +82,7 @@
 			//lazy loading a larger image
 			document.addEventListener("DOMContentLoaded", () => {
 				const background = new Image()
-				background.src = "/images/people_walking_background.png"
+				background.src = "images/people_walking_background.png"
 				background.onload = () => {
 					const body = document.getElementsByTagName("body")[0]
 					body.style.backgroundImage = `url(${background.src})`
