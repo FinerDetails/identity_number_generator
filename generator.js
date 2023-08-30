@@ -1,6 +1,7 @@
 window.onload = () => {
 	//Adds zeroes in front of numbers (9 => 09)
-	const setLength = (string, desiredLength) => {
+	const setLength = (input, desiredLength) => {
+		let string = input.toString()
 		while (string.length < desiredLength) {
 			string = "0" + string
 		}
@@ -16,60 +17,31 @@ window.onload = () => {
 	}
 
 	//randomizes a separator based on the given parameters
-	const returnSeparator = (minYear, maxYear, isExpat) => {
+	const returnSeparator = (year, isExpat) => {
+		const centuryIdentifier = year[1]
 		let separators
-		const minCentury = parseInt(minYear.slice(1, 2))
-		const maxCentury = parseInt(maxYear.slice(1, 2))
-		const separatorsA = ["+", "-"]
-		let separatorsB = ["+", "-", "A"]
-		let separatorsC = ["-", "A"]
-		const separatorsD = ["+"]
-		let separatorsE = ["-"]
-		let separatorsF = ["A"]
-
 		if (isExpat) {
-			separatorsB = [
-				"+",
-				"+",
-				"+",
-				"+",
-				"+",
-				"Y",
-				"X",
-				"W",
-				"V",
-				"U",
-				"B",
-				"C",
-				"D",
-				"E",
-				"F",
-			] // + is added 5 times to give an equal 1/3 chance for all centuries.
-			separatorsC = ["Y", "X", "W", "V", "U", "B", "C", "D", "E", "F"]
-			separatorsE = ["Y", "X", "W", "V", "U"]
-			separatorsF = ["B", "C", "D", "E", "F"]
-		}
-		switch (minCentury - maxCentury) {
-			case -1:
-				separators = separatorsA
-				break
-			case 8:
-				separators = separatorsB
-				break
-			case 9:
-				separators = separatorsC
-				break
-			default:
-				switch (minCentury) {
-					case 8:
-						separators = separatorsD
-						break
-					case 9:
-						separators = separatorsE
-						break
-					default:
-						separators = separatorsF
-				}
+			switch (centuryIdentifier) {
+				case "0":
+					separators = ["B", "C", "D", "E", "F"]
+					break
+				case "9":
+					separators = ["Y", "X", "W", "V", "U"]
+					break
+				default:
+					separators = ["+"]
+			}
+		} else {
+			switch (centuryIdentifier) {
+				case "0":
+					separators = ["A"]
+					break
+				case "9":
+					separators = ["-"]
+					break
+				default:
+					separators = ["+"]
+			}
 		}
 		return separators[randomIntInRangeOf(0, separators.length - 1)]
 	}
@@ -160,7 +132,7 @@ window.onload = () => {
 				individualNumber = setLength(randomIntInRangeOf(2, 899), 3)
 			}
 		}
-		return setLength(individualNumber.toString())
+		return setLength(individualNumber, 3)
 	}
 	const returnNNN = individualNumber => {
 		if (!individualNumber) {
@@ -223,11 +195,7 @@ window.onload = () => {
 			2
 		)
 		//indicates days in date of birth
-		const separator = returnSeparator(
-			dateData.minYearString,
-			dateData.maxYearString,
-			isExpat
-		) //indicates the century of birth
+		const separator = returnSeparator(year, isExpat) //indicates the century of birth
 		let t = returnCheckMark(parseInt(dd + mm + yy + nnn) % 31) //checkmark
 		const identityNumber = dd + mm + yy + separator + nnn + t
 		return identityNumber
@@ -236,8 +204,8 @@ window.onload = () => {
 	//provides a the current day for maxDate input field as default
 	const returnDefaultDateValue = () => {
 		const date = new Date()
-		let day = setLength(date.getDate().toString(), 2)
-		let month = setLength((date.getMonth() + 1).toString(), 2)
+		let day = setLength(date.getDate(), 2)
+		let month = setLength(date.getMonth() + 1, 2)
 		let year = date.getFullYear()
 		return `${year}-${month}-${day}`
 	}
